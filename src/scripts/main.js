@@ -130,35 +130,35 @@ function createNavigationPanel() {
 
 function createThemeToggle() {
   const themeToggleLabel = document.createElement("label");
-  themeToggleLabel.className = "header__container__menu__theme-toggle";
+  themeToggleLabel.className = "header__container__menu__controls__theme-toggle";
 
   const themeToggleInput = document.createElement("input")
-  themeToggleInput.className = "header__container__menu__theme-toggle__input";
+  themeToggleInput.className = "header__container__menu__controls__theme-toggle__input";
   themeToggleInput.type = "checkbox";
   themeToggleInput.checked = isDark();
 
   const themeSlider = document.createElement("span");
-  themeSlider.className = "header__container__menu__theme-toggle__slider";
+  themeSlider.className = "header__container__menu__controls__theme-toggle__slider";
 
   themeToggleLabel.append(themeToggleInput, themeSlider);
 
   const toggleIconsContainer = document.createElement("div");
-  toggleIconsContainer.className = "header__container__menu__theme-toggle__toggle-icons";
+  toggleIconsContainer.className = "header__container__menu__controls__theme-toggle__toggle-icons";
   themeToggleLabel.append(toggleIconsContainer);
 
   const sunContainer = document.createElement("div");
-  sunContainer.className = "header__container__menu__theme-toggle__toggle-icons__sun-container";
+  sunContainer.className = "header__container__menu__controls__theme-toggle__toggle-icons__sun-container";
 
   const sunIcon = document.createElement("img");
-  sunIcon.className = "header__container__menu__theme-toggle__toggle-icons__container__sun";
+  sunIcon.className = "header__container__menu__controls__theme-toggle__toggle-icons__container__sun";
   sunIcon.src = sun;
   sunContainer.append(sunIcon);
 
   const moonContainer = document.createElement("div");
-  moonContainer.className = "header__container__menu__theme-toggle__toggle-icons__moon-container";
+  moonContainer.className = "header__container__menu__controls__theme-toggle__toggle-icons__moon-container";
 
   const moonIcon = document.createElement("img");
-  moonIcon.className = "header__container__menu__theme-toggle__toggle-icons__moon";
+  moonIcon.className = "header__container__menu__controls__theme-toggle__toggle-icons__moon";
   moonIcon.src = moon;
   moonContainer.append(moonIcon);
 
@@ -173,7 +173,20 @@ function createThemeToggle() {
   return themeToggleLabel;
 }
 
-headerMenu.append(logo, createNavigationPanel(), createThemeToggle());
+const menuLink = document.createElement("a");
+menuLink.className = "header__container__menu__controls__menu-link";
+menuLink.textContent = "Menu";
+
+const menuCoffeeCupIcon = document.createElement("span");
+menuCoffeeCupIcon.className = "header__container__menu__controls__menu-link__icon";
+menuCoffeeCupIcon.innerHTML = coffeeCup;
+menuLink.append(menuCoffeeCupIcon);
+
+const menuControls = document.createElement("aside");
+menuControls.className = "header__container__menu__controls";
+
+menuControls.append(createThemeToggle(), menuLink);
+headerMenu.append(logo, createNavigationPanel(), menuControls);
 
 const hero = document.createElement("section");
 hero.className = "header__hero";
