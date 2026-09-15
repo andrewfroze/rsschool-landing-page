@@ -41,6 +41,10 @@ function loadActiveTheme() {
   applyActiveTheme();
 }
 
+function saveSettings() {
+  localStorage.setItem("theme", activeTheme);
+}
+
 function isDark() {
   return activeTheme === "dark";
 }
@@ -164,6 +168,7 @@ function createThemeToggle() {
     activeTheme = themeToggleInput.checked ? "dark" : "light";
     applyActiveTheme();
     updateLogoIcon();
+    saveSettings();
   });
   return themeToggleLabel;
 }
