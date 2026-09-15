@@ -8,6 +8,25 @@ import { darkTheme, lightTheme } from "./themes";
 let activeTheme;
 let logo;
 
+const navigationItems = [
+  {
+  title: "Favorite coffee",
+  link: "#"
+  },
+  {
+  title: "About",
+  link: "#"
+  },
+  {
+  title: "Mobile app",
+  link: "#"
+  },
+  {
+  title: "Contact us",
+  link: "#"
+  },
+];
+
 function loadActiveTheme() {
   activeTheme = localStorage.getItem("theme");
 
@@ -78,6 +97,30 @@ function updateLogoIcon() {
   logo.src = isDark() ? logoDark : logoLight;
 }
 
+function createNavigationPanel() {
+  const navigationPanel = document.createElement("nav");
+  navigationPanel.className = "header__container__menu__navigation";
+
+  const navigationList = document.createElement("ul");
+  navigationList.className = "header__container__menu__navigation__list";
+  navigationPanel.append(navigationList);  
+
+  for (const item of navigationItems) {
+    const navigationItem = document.createElement("li");
+    navigationItem.className = "header__container__menu__navigation__list__item";
+
+    const navigationItemLink = document.createElement("a");
+    navigationItemLink.textContent = item.title;
+    navigationItemLink.href = item.link;
+    navigationItemLink.className = "header__container__menu__navigation__list__item__link";
+    
+    navigationItem.append(navigationItemLink);
+    navigationList.append(navigationItem);
+  }
+
+  return navigationPanel;
+}
+
 function createThemeToggle() {
   const themeToggleLabel = document.createElement("label");
   themeToggleLabel.className = "header__container__menu__theme-toggle";
@@ -122,4 +165,4 @@ function createThemeToggle() {
   return themeToggleLabel;
 }
 
-headerMenu.append(logo, createThemeToggle());
+headerMenu.append(logo, createNavigationPanel(), createThemeToggle());

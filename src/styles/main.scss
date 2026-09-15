@@ -21,8 +21,11 @@ body {
     padding: 0 40px;
 
     &__menu {
+      width: 100%;
       display: flex;
       max-width: 1360px;
+      margin: 0 auto;
+      
       justify-content: space-between;
       align-items: center;
 
@@ -35,8 +38,39 @@ body {
         display: flex;
         gap: 40px;
 
-        &__item {
+        &__list {
           list-style: none;
+          display: flex;
+          gap: 40px;
+          justify-content: center;
+          align-items: center;
+
+          &__item {
+            &__link {
+              position: relative;
+              color: var(--theme-text-primary);
+              text-decoration: none;
+
+              &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: -8px;
+                height: 1px;
+                background-color: currentColor;
+
+                transform: scaleX(0);
+                transition: transform 0.3s ease;
+              }
+
+              @media (hover: hover) {
+                &:hover::after {
+                  transform: scaleX(1);
+                }
+              }
+            }
+          }
         }
       }
 
