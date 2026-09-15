@@ -1,6 +1,8 @@
 import "../styles/main.scss";
 import logoLight from "../images/logo-light.svg";
 import logoDark from "../images/logo-dark.svg";
+import sun from "../images/Sun.svg";
+import moon from "../images/Moon.svg";
 import { darkTheme, lightTheme } from "./themes";
 
 let activeTheme;
@@ -33,6 +35,7 @@ function applyThemeSettings(theme) {
 
   document.documentElement.style.setProperty("--theme-border-primary", theme.border.primary);
   document.documentElement.style.setProperty("--theme-border-inverse", theme.border.inverse);
+  document.documentElement.style.setProperty("--theme-toggle-hover", theme.toggle.hover);
 }
 
 loadActiveTheme();
@@ -88,6 +91,28 @@ function createThemeToggle() {
   themeSlider.className = "header__container__menu__theme-toggle__slider";
 
   themeToggleLabel.append(themeToggleInput, themeSlider);
+
+  const toggleIconsContainer = document.createElement("div");
+  toggleIconsContainer.className = "header__container__menu__theme-toggle__toggle-icons";
+  themeToggleLabel.append(toggleIconsContainer);
+
+  const sunContainer = document.createElement("div");
+  sunContainer.className = "header__container__menu__theme-toggle__toggle-icons__sun-container";
+
+  const sunIcon = document.createElement("img");
+  sunIcon.className = "header__container__menu__theme-toggle__toggle-icons__container__sun";
+  sunIcon.src = sun;
+  sunContainer.append(sunIcon);
+
+  const moonContainer = document.createElement("div");
+  moonContainer.className = "header__container__menu__theme-toggle__toggle-icons__moon-container";
+
+  const moonIcon = document.createElement("img");
+  moonIcon.className = "header__container__menu__theme-toggle__toggle-icons__moon";
+  moonIcon.src = moon;
+  moonContainer.append(moonIcon);
+
+  toggleIconsContainer.append(sunContainer, moonContainer);
 
   themeToggleInput.addEventListener("input", () => {
     activeTheme = themeToggleInput.checked ? "dark" : "light";

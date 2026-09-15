@@ -12,6 +12,9 @@ const lightTheme = {
   border: {
     primary: "#c1b6ad",
     inverse: "#665f55"
+  },
+  toggle: {
+    hover: "#665f55"
   }
 };
 
@@ -29,6 +32,9 @@ const darkTheme = {
   border: {
     primary: "#665f55",
     inverse: "#c1b6ad"
+  },
+  toggle: {
+    hover: "#665f55"
   }
 };
 

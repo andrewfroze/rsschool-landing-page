@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
 }
 
 body {
@@ -41,9 +42,13 @@ body {
 
       &__theme-toggle {
         position: relative;
-        display: inline-block;
+        display: flex;
         width: 88px;
         height: 44px;
+        border: 1px solid var(--theme-border-primary);
+        border-radius: 21px;
+        align-items: center;
+        cursor: pointer;
 
         &__input {
           opacity: 0;
@@ -59,7 +64,6 @@ body {
           left: 0;
           right: 0;
           bottom: 0;
-          background-color: #ccc;
           -webkit-transition: .4s;
           transition: .4s;
 
@@ -68,17 +72,13 @@ body {
             content: "";
             height: 36px;
             width: 36px;
-            left: 4px;
-            bottom: 4px;
+            left: 3px;
+            bottom: 3px;
             border-radius: 50%;
-            background-color: white;
+            background-color: var(--theme-text-accent);
             -webkit-transition: .4s;
             transition: .4s;
           }
-        }
-
-        &__input:checked + &__slider {
-          box-shadow: 0 0 1px #2196F3;
         }
 
         &__input:checked + &__slider:before {
@@ -86,7 +86,49 @@ body {
           -ms-transform: translateX(44px);
           transform: translateX(44px);
         }
+
+        &__toggle-icons {
+          width: 100%;
+          position: absolute;
+          display: flex;
+          z-index: 2;
+          justify-content: center;
+          gap: 10px;
+
+          &__moon-container,
+          &__sun-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+
+            &__sun,
+            &__moon {
+              width: 22px;
+              height: 22px;
+              
+            }
+          }
+        }
       }
     }
+  }
+}
+
+@media (hover: hover) {
+  .header__container__menu__theme-toggle:hover
+    .header__container__menu__theme-toggle__input:checked
+    ~ .header__container__menu__theme-toggle__toggle-icons
+    .header__container__menu__theme-toggle__toggle-icons__sun-container {
+      background-color: var(--theme-toggle-hover);
+  }
+
+  .header__container__menu__theme-toggle:hover
+    .header__container__menu__theme-toggle__input:not(:checked)
+    ~ .header__container__menu__theme-toggle__toggle-icons
+    .header__container__menu__theme-toggle__toggle-icons__moon-container {
+      background-color: var(--theme-toggle-hover);
   }
 }
