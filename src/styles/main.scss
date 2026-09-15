@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600,400');
+
+h1,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 * {
   box-sizing: border-box;
   transition: all 0.3s ease-in-out;
@@ -6,8 +15,6 @@
 body {
   color: var(--theme-text-primary);
   background-color: var(--theme-background-page);
-
-  min-height: 100vh;
 }
 
 .header {
@@ -143,6 +150,112 @@ body {
               width: 22px;
               height: 22px;
               
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__hero {
+    display: flex;
+    flex-direction: column;
+    padding: 0 40px;
+
+    &__container {
+      position: relative;
+      overflow: hidden;
+      padding: 100px;
+      border-radius: 40px;
+
+      &__poster,
+      &__video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      &__poster {
+        z-index: 1;
+        transition: opacity 0.5s ease;
+      }
+
+      &__video {
+        z-index: 0;
+      }
+
+      &.video-loaded {
+        .header__hero__container__poster {
+          opacity: 0;
+        }
+      }
+
+      &__offer {
+        position: relative;
+        z-index: 1;
+        width: 530px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+
+        &__title {
+          font-family: "Inter";
+          font-weight: 600;
+          font-style: normal;
+          font-size: 72px;
+          letter-spacing: 0;
+          line-height: 105%;
+          color: var(--theme-text-inverse);
+
+          &::before {
+            content: "Enjoy ";
+            font-style: italic;
+            color: var(--theme-text-accent);
+          }
+        }
+
+        &__description {
+          font-family: "Inter";
+          font-weight: 400;
+          font-style: normal;
+          font-size: 16px;
+          letter-spacing: 0;
+          line-height: 105%;
+          color: var(--theme-text-inverse);
+        }
+
+        &__menu-button {
+          display: flex;
+          gap: 8px;
+          background-color: var(--theme-background-page);
+          transition: opacity .5s ease-in-out;
+          padding: 20px 78px;
+          width: 200px;
+          height: fit-content;
+          border-radius: 100px;
+          transition: all 500ms ease;
+
+          font-family: "Inter";
+          font-weight: 600;
+          font-style: normal;
+          font-size: 16px;
+          letter-spacing: 0;
+          line-height: 150%;
+          text-align: center;
+          color: var(--theme-text-primary);
+          border: none;
+
+          &__icon {
+            opacity: 0;
+          }
+
+          @media (hover: hover) {
+            &:hover {
+              .header__hero__container__offer__menu-button__icon {
+                opacity: 1;
+              }
             }
           }
         }

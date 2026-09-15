@@ -3,6 +3,9 @@ import logoLight from "../images/logo-light.svg";
 import logoDark from "../images/logo-dark.svg";
 import sun from "../images/Sun.svg";
 import moon from "../images/Moon.svg";
+import heroImage from "../images/hero-image.jpg";
+import heroVideoSrc from "../images/hero-video.mp4";
+import coffeeCup from "../images/coffee-cup.svg?raw";
 import { darkTheme, lightTheme } from "./themes";
 
 let activeTheme;
@@ -113,7 +116,7 @@ function createNavigationPanel() {
     navigationItemLink.textContent = item.title;
     navigationItemLink.href = item.link;
     navigationItemLink.className = "header__container__menu__navigation__list__item__link";
-    
+
     navigationItem.append(navigationItemLink);
     navigationList.append(navigationItem);
   }
@@ -166,3 +169,63 @@ function createThemeToggle() {
 }
 
 headerMenu.append(logo, createNavigationPanel(), createThemeToggle());
+
+const hero = document.createElement("section");
+hero.className = "header__hero";
+header.append(hero);
+
+const heroContainer = document.createElement("div");
+heroContainer.className = "header__hero__container";
+hero.append(heroContainer);
+
+const heroPoster = document.createElement("img");
+heroPoster.className = "header__hero__container__poster";
+heroPoster.src = heroImage;
+heroPoster.alt = "";
+
+const heroVideo = document.createElement("video");
+heroVideo.className = "header__hero__container__video";
+heroVideo.autoplay = true;
+heroVideo.muted = true;
+heroVideo.loop = true;
+heroVideo.playsInline = true;
+
+const source = document.createElement("source");
+source.src = heroVideoSrc;
+source.type = "video/mp4";
+
+heroVideo.append(source);
+heroContainer.append(heroPoster, heroVideo);
+hero.append(heroContainer);
+
+heroVideo.addEventListener("canplay", () => {
+  heroContainer.classList.add("video-loaded");
+});
+
+const offer = document.createElement("div");
+offer.className = "header__hero__container__offer";
+heroContainer.append(offer);
+
+const offerTitle = document.createElement("h1");
+offerTitle.className = "header__hero__container__offer__title";
+offerTitle.textContent = "premium coffee at our charming cafe";
+offer.append(offerTitle);
+
+const offerDescription= document.createElement("p");
+offerDescription.className = "header__hero__container__offer__description";
+offerDescription.textContent = "With its inviting atmosphere and delicious coffee options, the Coffee House Resource is a popular destination for coffee lovers and those seeking a warm and inviting space to enjoy their favorite beverage.";
+offer.append(offerDescription);
+
+const offerMenuButton = document.createElement("button");
+offerMenuButton.className = "header__hero__container__offer__menu-button";
+offerMenuButton.textContent = "Menu";
+offer.append(offerMenuButton);
+
+const coffeeCupIcon = document.createElement("span");
+coffeeCupIcon.className = "header__hero__container__offer__menu-button__icon";
+coffeeCupIcon.innerHTML = coffeeCup;
+offerMenuButton.append(coffeeCupIcon);
+
+offerMenuButton.addEventListener("click", () => {
+  openMenuPage();
+})
