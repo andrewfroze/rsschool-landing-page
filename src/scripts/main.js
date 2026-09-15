@@ -11,14 +11,7 @@ function loadActiveTheme() {
     localStorage.setItem("theme", activeTheme);
   }
 
-  switch (activeTheme) {
-    case "light":
-      applyThemeSettings(lightTheme);
-      break;
-    case "dark":
-      applyThemeSettings(darkTheme);
-      break;
-  }
+  applyActiveTheme();
 }
 
 function applyThemeSettings(theme) {
@@ -47,3 +40,34 @@ const footer = document.createElement("footer");
 footer.className = "footer";
 
 document.body.append(header, main, footer);
+
+const themeToggleLabel = document.createElement("label");
+themeToggleLabel.className = "header__theme-toggle";
+header.append(themeToggleLabel);
+
+const themeToggleInput = document.createElement("input")
+themeToggleInput.className = "header__theme-toggle__input";
+themeToggleInput.type = "checkbox";
+themeToggleInput.checked = activeTheme === "dark";
+
+const themeSlider = document.createElement("span");
+themeSlider.className = "header__theme-toggle__slider";
+
+themeToggleLabel.append(themeToggleInput, themeSlider);
+
+
+themeToggleInput.addEventListener("input", () => {
+  activeTheme = themeToggleInput.checked ? "dark" : "light";
+  applyActiveTheme();
+});
+
+function applyActiveTheme() {
+  switch (activeTheme) {
+    case "light":
+      applyThemeSettings(lightTheme);
+      break;
+    case "dark":
+      applyThemeSettings(darkTheme);
+      break;
+  }
+}
