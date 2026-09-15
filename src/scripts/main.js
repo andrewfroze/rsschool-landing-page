@@ -1,7 +1,10 @@
 import "../styles/main.scss";
+import logoLight from "../images/logo-light.svg";
+import logoDark from "../images/logo-dark.svg";
 import { darkTheme, lightTheme } from "./themes";
 
 let activeTheme;
+let logo;
 
 function loadActiveTheme() {
   activeTheme = localStorage.getItem("theme");
@@ -12,6 +15,10 @@ function loadActiveTheme() {
   }
 
   applyActiveTheme();
+}
+
+function isDark() {
+  return activeTheme === "dark";
 }
 
 function applyThemeSettings(theme) {
@@ -41,26 +48,6 @@ footer.className = "footer";
 
 document.body.append(header, main, footer);
 
-const themeToggleLabel = document.createElement("label");
-themeToggleLabel.className = "header__theme-toggle";
-header.append(themeToggleLabel);
-
-const themeToggleInput = document.createElement("input")
-themeToggleInput.className = "header__theme-toggle__input";
-themeToggleInput.type = "checkbox";
-themeToggleInput.checked = activeTheme === "dark";
-
-const themeSlider = document.createElement("span");
-themeSlider.className = "header__theme-toggle__slider";
-
-themeToggleLabel.append(themeToggleInput, themeSlider);
-
-
-themeToggleInput.addEventListener("input", () => {
-  activeTheme = themeToggleInput.checked ? "dark" : "light";
-  applyActiveTheme();
-});
-
 function applyActiveTheme() {
   switch (activeTheme) {
     case "light":
@@ -71,3 +58,43 @@ function applyActiveTheme() {
       break;
   }
 }
+
+const headerContainer = document.createElement("div");
+headerContainer.className = "header__container";
+header.append(headerContainer);
+
+const headerMenu = document.createElement("div");
+headerMenu.className = "header__container__menu";
+headerContainer.append(headerMenu);
+
+logo = document.createElement("img");
+logo.className = "header__container__menu__logo";
+updateLogoIcon();
+
+function updateLogoIcon() {
+  logo.src = isDark() ? logoDark : logoLight;
+}
+
+function createThemeToggle() {
+  const themeToggleLabel = document.createElement("label");
+  themeToggleLabel.className = "header__container__menu__theme-toggle";
+
+  const themeToggleInput = document.createElement("input")
+  themeToggleInput.className = "header__container__menu__theme-toggle__input";
+  themeToggleInput.type = "checkbox";
+  themeToggleInput.checked = isDark();
+
+  const themeSlider = document.createElement("span");
+  themeSlider.className = "header__container__menu__theme-toggle__slider";
+
+  themeToggleLabel.append(themeToggleInput, themeSlider);
+
+  themeToggleInput.addEventListener("input", () => {
+    activeTheme = themeToggleInput.checked ? "dark" : "light";
+    applyActiveTheme();
+    updateLogoIcon();
+  });
+  return themeToggleLabel;
+}
+
+headerMenu.append(logo, createThemeToggle());
