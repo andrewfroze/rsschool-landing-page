@@ -3,9 +3,9 @@ import { renderFavoriteCoffeeSection } from "./favorite";
 import { renderAboutSection } from "./about";
 import { renderMobileAppSection } from "./mobile";
 
-function renderHomeMain() {
+function renderHomeMain({ onClickMenu }) {
   return [
-    renderHeroSection(),
+    renderHeroSection({onClickMenu: onClickMenu}),
     renderFavoriteCoffeeSection(),
     renderAboutSection(),
     renderMobileAppSection()

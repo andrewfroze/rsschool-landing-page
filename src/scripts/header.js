@@ -28,7 +28,7 @@ const navigationItems = [
   },
 ];
 
-function renderHeaderMenu() {
+function renderHeaderMenu({ onClickMenu, onClickLogo }) {
   const headerContainer = document.createElement("div");
   headerContainer.className = "header__container";
 
@@ -40,34 +40,9 @@ function renderHeaderMenu() {
   logo.className = "header__logo";
   updateLogoIcon();
 
-  function updateLogoIcon() {
-    logo.src = isDark() ? logoDark : logoLight;
-  }
-
-  function createNavigationPanel() {
-    const navigationPanel = document.createElement("nav");
-    navigationPanel.className = "header__navigation";
-
-    const navigationList = document.createElement("ul");
-    navigationList.className = "header__navigation-list";
-
-    navigationPanel.append(navigationList);
-
-    for (const item of navigationItems) {
-      const navigationItem = document.createElement("li");
-      navigationItem.className = "header__navigation-item";
-
-      const navigationItemLink = document.createElement("a");
-      navigationItemLink.className = "header__navigation-link";
-      navigationItemLink.textContent = item.title;
-      navigationItemLink.href = item.link;
-
-      navigationItem.append(navigationItemLink);
-      navigationList.append(navigationItem);
-    }
-
-    return navigationPanel;
-  }
+  logo.addEventListener("click", () => {
+    onClickLogo();
+  });
 
   const menuLink = document.createElement("a");
   menuLink.className = "header__menu-link";
@@ -78,6 +53,10 @@ function renderHeaderMenu() {
   menuCoffeeCupIcon.innerHTML = coffeeCup;
 
   menuLink.append(menuCoffeeCupIcon);
+
+  menuLink.addEventListener("click", () => {
+    onClickMenu();
+  });
 
   const menuControls = document.createElement("aside");
   menuControls.className = "header__controls";
@@ -104,6 +83,35 @@ function renderHeaderMenu() {
     menuControls,
   );
   return headerContainer;
+}
+
+function updateLogoIcon() {
+  logo.src = isDark() ? logoDark : logoLight;
+}
+
+function createNavigationPanel() {
+  const navigationPanel = document.createElement("nav");
+  navigationPanel.className = "header__navigation";
+
+  const navigationList = document.createElement("ul");
+  navigationList.className = "header__navigation-list";
+
+  navigationPanel.append(navigationList);
+
+  for (const item of navigationItems) {
+    const navigationItem = document.createElement("li");
+    navigationItem.className = "header__navigation-item";
+
+    const navigationItemLink = document.createElement("a");
+    navigationItemLink.className = "header__navigation-link";
+    navigationItemLink.textContent = item.title;
+    navigationItemLink.href = item.link;
+
+    navigationItem.append(navigationItemLink);
+    navigationList.append(navigationItem);
+  }
+
+  return navigationPanel;
 }
 
 export { renderHeaderMenu }

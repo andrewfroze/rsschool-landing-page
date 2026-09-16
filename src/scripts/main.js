@@ -4,6 +4,7 @@ import { loadActiveTheme } from "./themes";
 import { renderHomeMain } from "./home";
 import { renderHeaderMenu } from "./header";
 import { renderContacts } from "./contacts";
+import { renderCatalog } from "./catalog";
 
 loadActiveTheme();
 
@@ -14,8 +15,20 @@ main.className = "main";
 const footer = document.createElement("footer");
 footer.className = "footer";
 
-header.append(renderHeaderMenu());
-main.append(...renderHomeMain());
+const openCatalog = () => main.replaceChildren(renderCatalog());
+const openHome = () => 
+  main.replaceChildren(...renderHomeMain(
+      {
+        onClickMenu: openCatalog,
+      }
+    ));
+
+header.append(renderHeaderMenu({
+  onClickMenu: openCatalog,
+  onClickLogo: openHome,
+}));
+
+openHome();
 footer.append(renderContacts());
 
 document.body.append(header, main, footer);

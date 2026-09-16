@@ -4,7 +4,7 @@ import heroImage from "../images/hero-image.jpg";
 import heroVideoSrc from "../images/hero-video.mp4";
 import coffeeCup from "../images/coffee-cup.svg?raw";
 
-function renderHeroSection() {
+function renderHeroSection({ onClickMenu }) {
   const hero = document.createElement("section");
   hero.className = "hero";
 
@@ -61,7 +61,7 @@ function renderHeroSection() {
   offerMenuButton.append(coffeeCupIcon);
 
   offerMenuButton.addEventListener("click", () => {
-    openMenuPage();
+    onClickMenu();
   });
   return hero;
 }
