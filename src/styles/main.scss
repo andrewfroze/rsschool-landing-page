@@ -883,37 +883,71 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
   width: 100%;
   max-width: none;
-  height: 450px;
-  padding: 0 40px;
+  height: auto;
+
+  padding-inline: clamp(
+    16px,
+    calc(16px + (100vw - 380px) * 0.0738),
+    40px
+  );
+
   margin-top: 100px;
 
   &__container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 100px;
+    flex-wrap: wrap;
+
+    gap: clamp(
+      40px,
+      calc(40px + (100vw - 780px) * 0.1),
+      100px
+    );
+
     width: 100%;
     max-width: 1360px;
-    height: 450px;
-    padding: 100px;
+    min-height: 450px;
+    height: auto;
+
+    padding-block: clamp(
+      60px,
+      calc(60px + (100vw - 380px) * 0.106),
+      100px
+    );
+
+    padding-inline: clamp(
+      16px,
+      calc(16px + (100vw - 380px) * 0.116),
+      100px
+    );
+
     background-color: var(--theme-background-container);
     border-radius: 40px;
   }
 
+  &__offer,
+  &__info {
+    flex: 0 1 fit-content;
+    width: fit-content;
+    max-width: 100%;
+  }
+
   &__offer {
     display: flex;
-    flex: 1;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     gap: 40px;
-    width: 530px;
   }
 
   &__title {
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    max-width: 560px;
     margin: 0;
     color: var(--theme-text-inverse);
   }
@@ -922,10 +956,13 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+
+    width: fit-content;
   }
 
   &__social {
     display: flex;
+    flex: 0 0 60px;
     justify-content: center;
     align-items: center;
     width: 60px;
@@ -956,18 +993,19 @@ body {
 
   &__info {
     display: flex;
-    flex: 1;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     gap: 40px;
-    width: 530px;
   }
 
   &__info-title {
-    width: 100%;
+    width: fit-content;
     margin: 0;
+
     color: var(--theme-text-inverse);
+
+    white-space: nowrap;
   }
 
   &__list {
@@ -975,13 +1013,19 @@ body {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
+
+    width: fit-content;
   }
 
   &__link {
     position: relative;
+
     display: flex;
     align-items: flex-start;
     gap: 8px;
+
+    width: fit-content;
+
     color: var(--theme-text-inverse);
     font-family: "Inter";
     font-size: 16px;
@@ -989,11 +1033,14 @@ body {
     line-height: 150%;
     text-decoration: none;
 
+    white-space: nowrap;
+
     &-icon {
       display: flex;
       flex-shrink: 0;
       justify-content: center;
       align-items: center;
+
       width: 20px;
       height: 24px;
 
