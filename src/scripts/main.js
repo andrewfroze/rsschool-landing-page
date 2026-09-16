@@ -218,20 +218,20 @@ headerMenu.append(
 );
 
 const hero = document.createElement("section");
-hero.className = "header__hero";
-header.append(hero);
+hero.className = "hero";
+main.append(hero);
 
 const heroContainer = document.createElement("div");
-heroContainer.className = "header__hero__container";
+heroContainer.className = "hero__container";
 hero.append(heroContainer);
 
 const heroPoster = document.createElement("img");
-heroPoster.className = "header__hero__container__poster";
+heroPoster.className = "hero__container__poster";
 heroPoster.src = heroImage;
 heroPoster.alt = "";
 
 const heroVideo = document.createElement("video");
-heroVideo.className = "header__hero__container__video";
+heroVideo.className = "hero__container__video";
 heroVideo.autoplay = true;
 heroVideo.muted = true;
 heroVideo.loop = true;
@@ -250,26 +250,26 @@ heroVideo.addEventListener("canplay", () => {
 });
 
 const offer = document.createElement("div");
-offer.className = "header__hero__container__offer";
+offer.className = "hero__container__offer";
 heroContainer.append(offer);
 
 const offerTitle = document.createElement("h1");
-offerTitle.className = "header__hero__container__offer__title";
+offerTitle.className = "hero__container__offer__title";
 offerTitle.innerHTML = "<em>Enjoy</em> premium coffee at our charming cafe";
 offer.append(offerTitle);
 
 const offerDescription= document.createElement("p");
-offerDescription.className = "header__hero__container__offer__description";
+offerDescription.className = "hero__container__offer__description";
 offerDescription.textContent = "With its inviting atmosphere and delicious coffee options, the Coffee House Resource is a popular destination for coffee lovers and those seeking a warm and inviting space to enjoy their favorite beverage.";
 offer.append(offerDescription);
 
 const offerMenuButton = document.createElement("button");
-offerMenuButton.className = "header__hero__container__offer__menu-button";
+offerMenuButton.className = "hero__container__offer__menu-button";
 offerMenuButton.textContent = "Menu";
 offer.append(offerMenuButton);
 
 const coffeeCupIcon = document.createElement("span");
-coffeeCupIcon.className = "header__hero__container__offer__menu-button__icon";
+coffeeCupIcon.className = "hero__container__offer__menu-button__icon";
 coffeeCupIcon.innerHTML = coffeeCup;
 offerMenuButton.append(coffeeCupIcon);
 
@@ -622,4 +622,4 @@ contactsInfo.append(contactsInfoTitle, contactsList);
 contactsContainer.append(contactsOffer, contactsInfo);
 contacts.append(contactsContainer);
 
-main.append(contacts);
+footer.append(contacts);
