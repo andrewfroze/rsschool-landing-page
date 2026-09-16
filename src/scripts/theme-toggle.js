@@ -1,6 +1,7 @@
 import sun from "../images/Sun.svg";
 import moon from "../images/Moon.svg";
 import { isDark, setActiveTheme, applyActiveTheme, saveSettings } from "./themes";
+import { updateLogoIcon } from "./header";
   
 function createThemeToggle() {
   const themeToggle = document.createElement("label");

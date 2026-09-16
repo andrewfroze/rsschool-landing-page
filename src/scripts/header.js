@@ -36,6 +36,9 @@ function renderHeaderMenu({ onClickMenu, onClickLogo }) {
   headerMenu.className = "header__menu";
   headerContainer.append(headerMenu);
 
+  const logoLink = document.createElement("a");
+  logoLink.href = "#";
+
   logo = document.createElement("img");
   logo.className = "header__logo";
   updateLogoIcon();
@@ -43,6 +46,7 @@ function renderHeaderMenu({ onClickMenu, onClickLogo }) {
   logo.addEventListener("click", () => {
     onClickLogo();
   });
+  logoLink.append(logo);
 
   const menuLink = document.createElement("a");
   menuLink.className = "header__menu-link";
@@ -78,7 +82,7 @@ function renderHeaderMenu({ onClickMenu, onClickLogo }) {
   );
 
   headerMenu.append(
-    logo,
+    logoLink,
     createNavigationPanel(),
     menuControls,
   );
@@ -114,4 +118,4 @@ function createNavigationPanel() {
   return navigationPanel;
 }
 
-export { renderHeaderMenu }
+export { renderHeaderMenu, updateLogoIcon }

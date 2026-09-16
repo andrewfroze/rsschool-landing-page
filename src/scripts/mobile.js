@@ -27,10 +27,12 @@ function renderMobileAppSection() {
   const buttons = document.createElement("div");
   buttons.className = "mobile-app__buttons";
 
-  function createAppButton(icon, caption, name) {
+  function createAppButton(icon, caption, name, link) {
     const button = document.createElement("a");
     button.className = "mobile-app__button";
-    button.href = "#";
+    button.href = link;
+    button.target = "_blank";
+    button.rel = "noopener noreferrer";
     button.setAttribute("aria-label", `${name} download`);
 
     const iconContainer = document.createElement("span");
@@ -58,12 +60,14 @@ function renderMobileAppSection() {
     appStoreIcon,
     "Available on the",
     "App Store",
+    "https://www.apple.com/app-store/",
   );
 
   const googlePlayButton = createAppButton(
     googlePlayIcon,
     "Available on",
     "Google Play",
+    "https://play.google.com/store/games?hl=en",
   );
 
   buttons.append(appStoreButton, googlePlayButton);
