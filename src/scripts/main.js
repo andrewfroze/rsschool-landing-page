@@ -12,6 +12,9 @@ import about1 from "../images/about-1.jpg";
 import about2 from "../images/about-2.jpg";
 import about3 from "../images/about-3.jpg";
 import about4 from "../images/about-4.jpg";
+import mobileScreensImage from "../images/mobile-screens.png";
+import appStoreIcon from "../images/app-store.svg?raw";
+import googlePlayIcon from "../images/google-play.svg?raw";
 
 let currentSlide = 1;
 let activeTheme;
@@ -56,7 +59,6 @@ function isDark() {
 }
 
 function applyThemeSettings(theme) {
-  console.log(theme);
   document.documentElement.style.setProperty("--theme-text-primary", theme.text.primary);
   document.documentElement.style.setProperty("--theme-text-inverse", theme.text.inverse);
   document.documentElement.style.setProperty("--theme-text-accent", theme.text.accent);
@@ -99,11 +101,11 @@ headerContainer.className = "header__container";
 header.append(headerContainer);
 
 const headerMenu = document.createElement("div");
-headerMenu.className = "header__container__menu";
+headerMenu.className = "header__menu";
 headerContainer.append(headerMenu);
 
 logo = document.createElement("img");
-logo.className = "header__container__menu__logo";
+logo.className = "header__logo";
 updateLogoIcon();
 
 function updateLogoIcon() {
@@ -112,20 +114,21 @@ function updateLogoIcon() {
 
 function createNavigationPanel() {
   const navigationPanel = document.createElement("nav");
-  navigationPanel.className = "header__container__menu__navigation";
+  navigationPanel.className = "header__navigation";
 
   const navigationList = document.createElement("ul");
-  navigationList.className = "header__container__menu__navigation__list";
-  navigationPanel.append(navigationList);  
+  navigationList.className = "header__navigation-list";
+
+  navigationPanel.append(navigationList);
 
   for (const item of navigationItems) {
     const navigationItem = document.createElement("li");
-    navigationItem.className = "header__container__menu__navigation__list__item";
+    navigationItem.className = "header__navigation-item";
 
     const navigationItemLink = document.createElement("a");
+    navigationItemLink.className = "header__navigation-link";
     navigationItemLink.textContent = item.title;
     navigationItemLink.href = item.link;
-    navigationItemLink.className = "header__container__menu__navigation__list__item__link";
 
     navigationItem.append(navigationItemLink);
     navigationList.append(navigationItem);
@@ -135,64 +138,78 @@ function createNavigationPanel() {
 }
 
 function createThemeToggle() {
-  const themeToggleLabel = document.createElement("label");
-  themeToggleLabel.className = "header__container__menu__controls__theme-toggle";
+  const themeToggle = document.createElement("label");
+  themeToggle.className = "theme-toggle";
 
-  const themeToggleInput = document.createElement("input")
-  themeToggleInput.className = "header__container__menu__controls__theme-toggle__input";
+  const themeToggleInput = document.createElement("input");
+  themeToggleInput.className = "theme-toggle__input";
   themeToggleInput.type = "checkbox";
   themeToggleInput.checked = isDark();
 
   const themeSlider = document.createElement("span");
-  themeSlider.className = "header__container__menu__controls__theme-toggle__slider";
+  themeSlider.className = "theme-toggle__slider";
 
-  themeToggleLabel.append(themeToggleInput, themeSlider);
+  const toggleIcons = document.createElement("div");
+  toggleIcons.className = "theme-toggle__icons";
 
-  const toggleIconsContainer = document.createElement("div");
-  toggleIconsContainer.className = "header__container__menu__controls__theme-toggle__toggle-icons";
-  themeToggleLabel.append(toggleIconsContainer);
-
-  const sunContainer = document.createElement("div");
-  sunContainer.className = "header__container__menu__controls__theme-toggle__toggle-icons__sun-container";
+  const sunContainer = document.createElement("span");
+  sunContainer.className = "theme-toggle__icon theme-toggle__icon--sun";
 
   const sunIcon = document.createElement("img");
-  sunIcon.className = "header__container__menu__controls__theme-toggle__toggle-icons__container__sun";
   sunIcon.src = sun;
+  sunIcon.alt = "";
   sunContainer.append(sunIcon);
 
-  const moonContainer = document.createElement("div");
-  moonContainer.className = "header__container__menu__controls__theme-toggle__toggle-icons__moon-container";
+  const moonContainer = document.createElement("span");
+  moonContainer.className = "theme-toggle__icon theme-toggle__icon--moon";
 
   const moonIcon = document.createElement("img");
-  moonIcon.className = "header__container__menu__controls__theme-toggle__toggle-icons__moon";
   moonIcon.src = moon;
+  moonIcon.alt = "";
   moonContainer.append(moonIcon);
 
-  toggleIconsContainer.append(sunContainer, moonContainer);
+  toggleIcons.append(sunContainer, moonContainer);
+
+  themeToggle.append(
+    themeToggleInput,
+    themeSlider,
+    toggleIcons,
+  );
 
   themeToggleInput.addEventListener("input", () => {
     activeTheme = themeToggleInput.checked ? "dark" : "light";
+
     applyActiveTheme();
     updateLogoIcon();
     saveSettings();
   });
-  return themeToggleLabel;
+
+  return themeToggle;
 }
 
 const menuLink = document.createElement("a");
-menuLink.className = "header__container__menu__controls__menu-link";
+menuLink.className = "header__menu-link";
 menuLink.textContent = "Menu";
 
 const menuCoffeeCupIcon = document.createElement("span");
-menuCoffeeCupIcon.className = "header__container__menu__controls__menu-link__icon";
+menuCoffeeCupIcon.className = "header__menu-link-icon";
 menuCoffeeCupIcon.innerHTML = coffeeCup;
+
 menuLink.append(menuCoffeeCupIcon);
 
 const menuControls = document.createElement("aside");
-menuControls.className = "header__container__menu__controls";
+menuControls.className = "header__controls";
 
-menuControls.append(createThemeToggle(), menuLink);
-headerMenu.append(logo, createNavigationPanel(), menuControls);
+menuControls.append(
+  createThemeToggle(),
+  menuLink,
+);
+
+headerMenu.append(
+  logo,
+  createNavigationPanel(),
+  menuControls,
+);
 
 const hero = document.createElement("section");
 hero.className = "header__hero";
@@ -390,6 +407,7 @@ updateSlider();
 
 const about = document.createElement("section");
 about.className = "about";
+about.id = "about";
 
 const aboutContainer = document.createElement("div");
 aboutContainer.className = "about__container";
@@ -437,3 +455,78 @@ aboutContainer.append(aboutTitle, aboutImages);
 about.append(aboutContainer);
 
 main.append(about);
+
+const mobileApp = document.createElement("section");
+mobileApp.className = "mobile-app";
+mobileApp.id = "mobile";
+
+const mobileAppContainer = document.createElement("div");
+mobileAppContainer.className = "mobile-app__container";
+
+const mobileOffer = document.createElement("div");
+mobileOffer.className = "mobile-app__offer";
+
+const mobileTitle = document.createElement("h2");
+mobileTitle.className = "mobile-app__title";
+mobileTitle.textContent = "Download our app to start ordering";
+
+const description = document.createElement("p");
+description.className = "mobile-app__description";
+description.textContent =
+  "Download the Resource app today and experience the comfort of ordering your favorite coffee from wherever you are";
+
+const buttons = document.createElement("div");
+buttons.className = "mobile-app__buttons";
+
+function createAppButton(icon, caption, name) {
+  const button = document.createElement("a");
+  button.className = "mobile-app__button";
+  button.href = "#";
+  button.setAttribute("aria-label", `${name} download`);
+
+  const iconContainer = document.createElement("span");
+  iconContainer.className = "mobile-app__button__icon";
+  iconContainer.innerHTML = icon;
+
+  const text = document.createElement("span");
+  text.className = "mobile-app__button__text";
+
+  const captionElement = document.createElement("span");
+  captionElement.className = "mobile-app__button__caption";
+  captionElement.textContent = caption;
+
+  const nameElement = document.createElement("span");
+  nameElement.className = "mobile-app__button__name";
+  nameElement.textContent = name;
+
+  text.append(captionElement, nameElement);
+  button.append(iconContainer, text);
+
+  return button;
+}
+
+const appStoreButton = createAppButton(
+  appStoreIcon,
+  "Available on the",
+  "App Store",
+);
+
+const googlePlayButton = createAppButton(
+  googlePlayIcon,
+  "Available on",
+  "Google Play",
+);
+
+buttons.append(appStoreButton, googlePlayButton);
+
+mobileOffer.append(mobileTitle, description, buttons);
+
+const mobileScreens = document.createElement("img");
+mobileScreens.className = "mobile-app__screens";
+mobileScreens.src = mobileScreensImage;
+mobileScreens.alt = "Resource mobile app";
+
+mobileAppContainer.append(mobileOffer, mobileScreens);
+mobileApp.append(mobileAppContainer);
+
+main.append(mobileApp);
