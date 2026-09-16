@@ -1,3 +1,5 @@
+import "../styles/favorite.scss";
+
 import { coffees } from "./coffees";
 
 let currentSlide = 1;

@@ -1,3 +1,5 @@
+import "../styles/header.scss";
+
 import logoLight from "../images/logo-light.svg";
 import logoDark from "../images/logo-dark.svg";
 

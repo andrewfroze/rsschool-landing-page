@@ -1,3 +1,5 @@
+import "../styles/contacts.scss";
+
 import pinIcon from "../images/pin-alt.svg?raw";
 import phoneIcon from "../images/phone.svg?raw";
 import clockIcon from "../images/clock.svg?raw";
