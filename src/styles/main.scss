@@ -6,7 +6,11 @@ html {
 }
 
 h1 {
-  font-size: 72px;
+  font-size: clamp(
+      42px,
+      calc(42px + (100vw - 380px) * 0.0738),
+      72px
+    );
   font-weight: 600;
   line-height: 105%;
   letter-spacing: 0;
@@ -18,7 +22,11 @@ em {
 }
 
 h2 {
-  font-size: 60px;
+  font-size: clamp(
+      32px,
+      calc(32px + (100vw - 380px) * 0.0738),
+      60px
+    );
   font-weight: 600;
   line-height: 125%;
   letter-spacing: 0;
@@ -384,7 +392,8 @@ body {
     position: relative;
     overflow: hidden;
 
-    padding: 100px;
+    padding-block: clamp(60px, calc(60px + (100vw - 380px) * 0.106), 100px);
+    padding-inline: clamp(16px, calc(16px + (100vw - 380px) * 0.116), 100px);
 
     border-radius: 40px;
 
@@ -422,8 +431,8 @@ body {
       display: flex;
       flex-direction: column;
       gap: 40px;
-
-      width: 530px;
+      width: 100%;
+      max-width: 530px;
 
       &__title {
         color: var(--theme-text-inverse);
@@ -730,6 +739,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 100px;
+    flex-wrap: wrap;
 
     width: 100%;
     max-width: 1360px;
@@ -768,10 +778,8 @@ body {
   &__buttons {
     display: flex;
     align-items: flex-start;
+    flex-wrap: wrap;
     gap: 20px;
-
-    width: 420px;
-    height: 64px;
   }
 
   &__button {
@@ -846,10 +854,8 @@ body {
   &__screens {
     display: block;
 
-    width: 630px;
-    height: 630px;
-
-    flex-shrink: 0;
+    width: clamp(0px, 100%, 630px);
+    aspect-ratio: 1;
 
     object-fit: contain;
   }
@@ -1018,16 +1024,6 @@ body {
   .about {
     width: 100%;
     max-width: none;
-
-    &__container {
-      width: 100%;
-      max-width: 688px;
-    }
-
-    &__title {
-      font-size: 60px;
-      line-height: 125%;
-    }
 
     &__images {
       flex-direction: column;
