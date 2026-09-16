@@ -359,7 +359,7 @@ coffees.forEach((coffee, index) => {
   control.setAttribute("aria-label", `Show ${coffee.name}`);
 
   control.addEventListener("click", () => {
-    currentSlide = index;
+    currentSlide = index + 1;
     updateSlider();
   });
 
