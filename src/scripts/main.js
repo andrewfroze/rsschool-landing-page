@@ -206,9 +206,20 @@ menuLink.append(menuCoffeeCupIcon);
 const menuControls = document.createElement("aside");
 menuControls.className = "header__controls";
 
+const burgerButton = document.createElement("button");
+burgerButton.className = "header__burger";
+burgerButton.type = "button";
+burgerButton.setAttribute("aria-label", "Open menu");
+
+const burgerIcon = document.createElement("span");
+burgerIcon.className = "header__burger-icon";
+
+burgerButton.append(burgerIcon);
+
 menuControls.append(
   createThemeToggle(),
   menuLink,
+  burgerButton,
 );
 
 headerMenu.append(
