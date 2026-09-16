@@ -114,7 +114,11 @@ body {
   &__container {
     display: flex;
     flex-direction: column;
-    padding: 0 40px;
+    padding-inline: clamp(
+      16px,
+      calc(16px + (100vw - 380px) * 0.0738),
+      40px
+    );
     background-color: var(--theme-background-page);
   }
 
@@ -267,22 +271,6 @@ body {
   }
 }
 
-@media (max-width: 850px) {
-  .header {
-    &__navigation {
-      display: none;
-    }
-
-    &__menu-link {
-      display: none;
-    }
-
-    &__burger {
-      display: flex;
-    }
-  }
-}
-
 .theme-toggle {
   position: relative;
 
@@ -386,7 +374,11 @@ body {
   flex-direction: column;
 
   width: 100%;
-  padding: 0 40px;
+  padding-inline: clamp(
+    16px,
+    calc(16px + (100vw - 380px) * 0.0738),
+    40px
+  );
 
   &__container {
     position: relative;
@@ -491,6 +483,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-inline: clamp(
+    16px,
+    calc(16px + (100vw - 380px) * 0.0738),
+    40px
+  );
 
   &__container {
     width: 100%;
@@ -642,6 +639,11 @@ body {
   align-items: center;
   gap: 40px;
   width: 100%;
+  padding-inline: clamp(
+    16px,
+    calc(16px + (100vw - 380px) * 0.0738),
+    40px
+  );
 
   &__container {
     display: flex;
@@ -712,11 +714,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-inline: clamp(
+    16px,
+    calc(16px + (100vw - 380px) * 0.0738),
+    40px
+  );
 
   width: 100%;
   min-height: 630px;
-
-  padding: 0 40px;
 
   border-radius: 40px;
 
@@ -991,6 +996,70 @@ body {
       &:hover::after {
         transform: scaleX(1);
       }
+    }
+  }
+}
+
+@media (max-width: 850px) {
+  .header {
+    &__navigation {
+      display: none;
+    }
+
+    &__menu-link {
+      display: none;
+    }
+
+    &__burger {
+      display: flex;
+    }
+  }
+
+  .about {
+    width: 100%;
+    max-width: none;
+
+    &__container {
+      width: 100%;
+      max-width: 688px;
+    }
+
+    &__title {
+      font-size: 60px;
+      line-height: 125%;
+    }
+
+    &__images {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      gap: 40px;
+    }
+
+    &__column {
+      width: 100%;
+      gap: 40px;
+    }
+
+    &__box {
+      width: 100%;
+      height: 590px;
+      border-radius: 20px;
+
+      &--small {
+        display: none;
+      }
+
+      &--large {
+        display: block;
+        height: 590px;
+      }
+    }
+
+    &__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
 }
