@@ -3,7 +3,7 @@ import { createMenuCard } from "./menu-card.js";
 import coffeeIcon from "../images/coffee.png";
 import teaIcon from "../images/tea.png";
 import dessertIcon from "../images/dessert.png";
-import { menu as catalogMenu } from "./catalogItems";
+import { menu as catalogMenu } from "./catalog-items.js";
 
 function renderCatalog() {
   const menu = document.createElement("section");
