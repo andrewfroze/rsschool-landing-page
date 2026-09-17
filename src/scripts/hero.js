@@ -52,7 +52,7 @@ function renderHeroSection() {
   const offerMenuButton = document.createElement("a");
   offerMenuButton.className = "hero__container__offer__menu-button";
   offerMenuButton.textContent = "Menu";
-  offerMenuButton.href = "./menu/";
+  offerMenuButton.href = `${import.meta.env.BASE_URL}menu/`;
   offer.append(offerMenuButton);
 
   const coffeeCupIcon = document.createElement("span");

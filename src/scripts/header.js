@@ -32,7 +32,7 @@ const navigationItems = [
   },
 ];
 
-function renderHeaderMenu(linksPrefix = "", menuUrl = "./menu/") {
+function renderHeaderMenu(linksPrefix = "", menuUrl = `${import.meta.env.BASE_URL}menu/`) {
   const headerContainer = document.createElement("div");
   headerContainer.className = "header__container";
 
