@@ -3,6 +3,8 @@ import "../styles/favorite.scss";
 import { favoriteCoffees } from "./coffees";
 
 let currentSlide = 1;
+let isAnimating = false;
+
 
 function renderFavoriteCoffeeSection() {
   const favoriteCoffee = document.createElement("section");
@@ -76,6 +78,9 @@ function renderFavoriteCoffeeSection() {
     control.setAttribute("aria-label", `Show ${coffee.name}`);
 
     control.addEventListener("click", () => {
+      if (isAnimating) return;
+
+      isAnimating = true;
       currentSlide = index + 1;
       updateSlider();
     });
@@ -115,16 +120,24 @@ function renderFavoriteCoffeeSection() {
   }
 
   prevButton.addEventListener("click", () => {
+    if (isAnimating) return;
+
+    isAnimating = true;
     currentSlide -= 1;
     updateSlider();
   });
 
   nextButton.addEventListener("click", () => {
+    if (isAnimating) return;
+
+    isAnimating = true;
     currentSlide += 1;
     updateSlider();
   });
 
   slidesContainer.addEventListener("transitionend", () => {
+    isAnimating = false;
+
     if (currentSlide === favoriteCoffees.length + 1) {
       currentSlide = 1;
       updateSlider(false);
