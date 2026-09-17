@@ -3,28 +3,7 @@ import { createMenuCard } from "./menu-card.js";
 import coffeeIcon from "../images/coffee.png";
 import teaIcon from "../images/tea.png";
 import dessertIcon from "../images/dessert.png";
-
-import coffee1 from "../images/coffee-1.jpg";
-import coffee2 from "../images/coffee-2.jpg";
-
-const menuItems = [
-  {
-    category: "coffee",
-    name: "Irish coffee",
-    description:
-      "Fragrant black coffee with Jameson Irish whiskey and whipped milk.",
-    price: "$7.00",
-    image: coffee1,
-  },
-  {
-    category: "coffee",
-    name: "Kahlua coffee",
-    description:
-      "Classic coffee with Kahlua liqueur and whipped cream.",
-    price: "$7.00",
-    image: coffee2,
-  },
-];
+import { menu as catalogMenu } from "./catalogItems";
 
 function renderCatalog() {
   const menu = document.createElement("section");
@@ -87,11 +66,9 @@ function renderCatalog() {
   function renderCards(category) {
     grid.replaceChildren();
 
-    const filteredItems = menuItems.filter(
-      (item) => item.category === category,
-    );
-
-    filteredItems.forEach((item) => {
+    console.log(category);
+    console.log(catalogMenu);
+    catalogMenu[category].forEach((item) => {
       grid.append(createMenuCard(item));
     });
   }

@@ -1,6 +1,6 @@
 import "../styles/favorite.scss";
 
-import { coffees } from "./coffees";
+import { favoriteCoffees } from "./coffees";
 
 let currentSlide = 1;
 
@@ -42,7 +42,7 @@ function renderFavoriteCoffeeSection() {
   const controls = document.createElement("div");
   controls.className = "favorite-coffee__controls";
 
-  coffees.forEach((coffee, index) => {
+  favoriteCoffees.forEach((coffee, index) => {
     const slide = document.createElement("article");
     slide.className = "favorite-coffee__slide";
 
@@ -111,7 +111,7 @@ function renderFavoriteCoffeeSection() {
   }
 
   function getRealSlideIndex() {
-    return (currentSlide - 1 + coffees.length) % coffees.length;
+    return (currentSlide - 1 + favoriteCoffees.length) % favoriteCoffees.length;
   }
 
   prevButton.addEventListener("click", () => {
@@ -125,13 +125,13 @@ function renderFavoriteCoffeeSection() {
   });
 
   slidesContainer.addEventListener("transitionend", () => {
-    if (currentSlide === coffees.length + 1) {
+    if (currentSlide === favoriteCoffees.length + 1) {
       currentSlide = 1;
       updateSlider(false);
     }
 
     if (currentSlide === 0) {
-      currentSlide = coffees.length;
+      currentSlide = favoriteCoffees.length;
       updateSlider(false);
     }
   });
