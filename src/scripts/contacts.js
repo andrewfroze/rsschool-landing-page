@@ -25,10 +25,12 @@ function renderContacts() {
   const socials = document.createElement("div");
   socials.className = "contacts__socials";
 
-  function createSocialButton(icon, label) {
+  function createSocialButton(icon, label, link) {
     const social = document.createElement("a");
     social.className = "contacts__social";
-    social.href = "#";
+    social.href = link;
+    social.target = "_blank";
+    social.rel = "noopener noreferrer";
     social.setAttribute("aria-label", label);
     social.innerHTML = icon;
 
@@ -36,9 +38,9 @@ function renderContacts() {
   }
 
   socials.append(
-    createSocialButton(twitterIcon, "Twitter"),
-    createSocialButton(instagramIcon, "Instagram"),
-    createSocialButton(facebookIcon, "Facebook"),
+    createSocialButton(twitterIcon, "Twitter", "https://twitter.com/"),
+    createSocialButton(instagramIcon, "Instagram", "https://instagram.com/"),
+    createSocialButton(facebookIcon, "Facebook", "https://facebook.com/"),
   );
 
   contactsOffer.append(contactsTitle, socials);
