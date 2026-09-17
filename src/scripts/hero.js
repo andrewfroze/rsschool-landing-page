@@ -10,7 +10,6 @@ function renderHeroSection() {
 
   const heroContainer = document.createElement("div");
   heroContainer.className = "hero__container";
-  hero.append(heroContainer);
 
   const heroPoster = document.createElement("img");
   heroPoster.className = "hero__container__poster";
