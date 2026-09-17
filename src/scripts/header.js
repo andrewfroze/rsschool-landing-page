@@ -12,23 +12,27 @@ let logo;
 const navigationItems = [
   {
     title: "Favorite coffee",
-    link: "#favorite"
+    link: "#favorite",
+    isCurrentPage: false,
   },
   {
     title: "About",
-    link: "#about"
+    link: "#about",
+    isCurrentPage: false,
   },
   {
     title: "Mobile app",
-    link: "#mobile"
+    link: "#mobile",
+    isCurrentPage: false,
   },
   {
     title: "Contact us",
-    link: "#contacts"
+    link: "#contacts",
+    isCurrentPage: true,
   },
 ];
 
-function renderHeaderMenu({ onClickMenu, onClickLogo }) {
+function renderHeaderMenu(linksPrefix = "", menuUrl = "./menu/") {
   const headerContainer = document.createElement("div");
   headerContainer.className = "header__container";
 
@@ -37,19 +41,17 @@ function renderHeaderMenu({ onClickMenu, onClickLogo }) {
   headerContainer.append(headerMenu);
 
   const logoLink = document.createElement("a");
-  logoLink.href = "#";
+  logoLink.href = linksPrefix + "#";
 
   logo = document.createElement("img");
   logo.className = "header__logo";
   updateLogoIcon();
 
-  logo.addEventListener("click", () => {
-    onClickLogo();
-  });
   logoLink.append(logo);
 
   const menuLink = document.createElement("a");
   menuLink.className = "header__menu-link";
+  menuLink.href = menuUrl;
   menuLink.textContent = "Menu";
 
   const menuCoffeeCupIcon = document.createElement("span");
@@ -57,10 +59,6 @@ function renderHeaderMenu({ onClickMenu, onClickLogo }) {
   menuCoffeeCupIcon.innerHTML = coffeeCup;
 
   menuLink.append(menuCoffeeCupIcon);
-
-  menuLink.addEventListener("click", () => {
-    onClickMenu();
-  });
 
   const menuControls = document.createElement("aside");
   menuControls.className = "header__controls";
@@ -83,7 +81,7 @@ function renderHeaderMenu({ onClickMenu, onClickLogo }) {
 
   headerMenu.append(
     logoLink,
-    createNavigationPanel(),
+    createNavigationPanel(linksPrefix),
     menuControls,
   );
   return headerContainer;
@@ -93,7 +91,7 @@ function updateLogoIcon() {
   logo.src = isDark() ? logoDark : logoLight;
 }
 
-function createNavigationPanel() {
+function createNavigationPanel(linksPrefix = "") {
   const navigationPanel = document.createElement("nav");
   navigationPanel.className = "header__navigation";
 
@@ -109,7 +107,7 @@ function createNavigationPanel() {
     const navigationItemLink = document.createElement("a");
     navigationItemLink.className = "header__navigation-link";
     navigationItemLink.textContent = item.title;
-    navigationItemLink.href = item.link;
+    navigationItemLink.href = (item.isCurrentPage ? "" : linksPrefix) + item.link;
 
     navigationItem.append(navigationItemLink);
     navigationList.append(navigationItem);

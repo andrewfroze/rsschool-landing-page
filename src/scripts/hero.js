@@ -4,7 +4,7 @@ import heroImage from "../images/hero-image.jpg";
 import heroVideoSrc from "../images/hero-video.mp4";
 import coffeeCup from "../images/coffee-cup.svg?raw";
 
-function renderHeroSection({ onClickMenu }) {
+function renderHeroSection() {
   const hero = document.createElement("section");
   hero.className = "hero";
 
@@ -50,9 +50,10 @@ function renderHeroSection({ onClickMenu }) {
   offerDescription.textContent = "With its inviting atmosphere and delicious coffee options, the Coffee House Resource is a popular destination for coffee lovers and those seeking a warm and inviting space to enjoy their favorite beverage.";
   offer.append(offerDescription);
 
-  const offerMenuButton = document.createElement("button");
+  const offerMenuButton = document.createElement("a");
   offerMenuButton.className = "hero__container__offer__menu-button";
   offerMenuButton.textContent = "Menu";
+  offerMenuButton.href = "./menu/";
   offer.append(offerMenuButton);
 
   const coffeeCupIcon = document.createElement("span");
@@ -60,9 +61,6 @@ function renderHeroSection({ onClickMenu }) {
   coffeeCupIcon.innerHTML = coffeeCup;
   offerMenuButton.append(coffeeCupIcon);
 
-  offerMenuButton.addEventListener("click", () => {
-    onClickMenu();
-  });
   return hero;
 }
 
