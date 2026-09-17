@@ -17,7 +17,9 @@ const footer = document.createElement("footer");
 footer.className = "footer";
 
 header.append(renderHeaderMenu("../", "#"));
-main.append(renderCatalog());
+
+const catalog = renderCatalog();
+main.append(catalog);
 footer.append(renderContacts());
 
 document.body.append(header, main, footer);
