@@ -124,7 +124,7 @@
 
     @media (hover: hover) {
       &:hover {
-        background-color: var(--theme-text-primary);
+        background-color: var(--theme-background-container);
         color: var(--theme-text-inverse);
       }
     }
