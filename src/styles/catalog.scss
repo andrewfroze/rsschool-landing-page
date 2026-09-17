@@ -91,8 +91,8 @@
   }
 
   &__grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 310px);
     justify-content: center;
     align-items: flex-start;
     align-content: flex-start;
@@ -100,6 +100,18 @@
     gap: 40px;
 
     width: 100%;
+
+    @media (max-width: 1400px) {
+      grid-template-columns: repeat(3, 310px);
+    }
+
+    @media (max-width: 1050px) {
+      grid-template-columns: repeat(2, 310px);
+    }
+
+    @media (max-width: 700px) {
+      grid-template-columns: 310px;
+    }
   }
 
   &__card {
