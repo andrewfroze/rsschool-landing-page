@@ -66,8 +66,6 @@ function renderCatalog() {
   function renderCards(category) {
     grid.replaceChildren();
 
-    console.log(category);
-    console.log(catalogMenu);
     catalogMenu[category].forEach((item) => {
       grid.append(createMenuCard(item));
     });
