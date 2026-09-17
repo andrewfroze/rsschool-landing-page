@@ -19,7 +19,7 @@ import dessert6 from "../images/dessert-6.jpg";
 import dessert7 from "../images/dessert-7.jpg";
 import dessert8 from "../images/dessert-8.jpg";
 
-const menu= {
+const menu = {
   coffee: [
     {
       name: "Irish coffee",
