@@ -59,6 +59,8 @@ function renderContacts() {
     const link = document.createElement("a");
     link.className = "contacts__link";
     link.href = href;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
 
     const iconContainer = document.createElement("span");
     iconContainer.className = "contacts__link-icon";
@@ -76,7 +78,7 @@ function renderContacts() {
     createContactLink(
       pinIcon,
       "8558 Green Rd., LA",
-      "#",
+      "https://maps.app.goo.gl/HS1NKs5pPkqfNaYW7",
     ),
     createContactLink(
       phoneIcon,
@@ -86,7 +88,7 @@ function renderContacts() {
     createContactLink(
       clockIcon,
       "Mon–Sat: 9:00–23:00",
-      "#",
+      "https://maps.app.goo.gl/HS1NKs5pPkqfNaYW7",
     ),
   );
 
