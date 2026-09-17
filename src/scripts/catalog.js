@@ -25,7 +25,7 @@ function renderCatalog() {
   const offer = document.createElement("div");
   offer.className = "menu__offer";
 
-  const title = document.createElement("h2");
+  const title = document.createElement("h1");
   title.className = "menu__title";
   title.innerHTML =
     "Behind each of our cups hides an <em>amazing surprise</em>";

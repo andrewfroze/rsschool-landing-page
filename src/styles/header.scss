@@ -113,14 +113,14 @@
       &::before {
         content: "";
         width: 16px;
-        height: 2px;
+        height: 1.5px;
         background-color: var(--theme-text-primary);
       }
 
       &::after {
         content: "";
         width: 16px;
-        height: 2px;
+        height: 1.5px;
         background-color: var(--theme-text-primary);
       }
     }

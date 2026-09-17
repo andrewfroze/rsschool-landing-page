@@ -36,6 +36,15 @@
     max-width: 800px;
 
     text-align: center;
+
+    font-size: clamp(
+      32px,
+      calc(32px + (100vw - 380px) * 0.0738),
+      60px
+    );
+    font-weight: 600;
+    line-height: 125%;
+    letter-spacing: 0;
   }
 
   &__tabs {
