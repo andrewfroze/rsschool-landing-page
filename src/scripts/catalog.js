@@ -3,8 +3,8 @@ import { createMenuCard } from "./menu-card.js";
 import coffeeIcon from "../images/coffee.png";
 import teaIcon from "../images/tea.png";
 import dessertIcon from "../images/dessert.png";
-import { menu as catalogMenu } from "./catalog-items.js";
 import more from "../images/more.svg?raw";
+import menuItems from "../resources/products.json";
 
 const collapsedRows = 2;
 let activeTab;
@@ -134,7 +134,8 @@ function renderCards(category) {
 
   const visibleCardsCount = collapsedRows * columns;
 
-  let cardsToRender = catalogMenu[category];
+  let categoryItems = menuItems.filter((item) => item.category === category);
+  let cardsToRender = categoryItems;
 
   if (collapsed) {
     cardsToRender = cardsToRender.slice(0, visibleCardsCount);
@@ -147,7 +148,7 @@ function renderCards(category) {
   showMoreButton?.remove();
   showMoreButton = null;
 
-  if (collapsed && catalogMenu[category].length > cardsToRender.length) {
+  if (collapsed && categoryItems.length > cardsToRender.length) {
     renderMoreButton();
   }
 }

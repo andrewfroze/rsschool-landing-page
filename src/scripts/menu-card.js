@@ -1,3 +1,5 @@
+import { getImage } from "./catalog-images";
+
 function createMenuCard(item) {
   const card = document.createElement("article");
   card.className = "menu__card";
@@ -7,7 +9,7 @@ function createMenuCard(item) {
 
   const image = document.createElement("img");
   image.className = "menu__card-image";
-  image.src = item.image;
+  image.src = getImage(item.name);
   image.alt = item.name;
 
   box.append(image);
