@@ -49,7 +49,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: clamp(
+      16px,
+      calc(16px + (100vw - 768px) * 0.0288),
+      40px
+    );
   }
 
   &__navigation-link {
@@ -270,7 +274,7 @@
   }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 768px) {
   .header {
     &__navigation {
       display: none;

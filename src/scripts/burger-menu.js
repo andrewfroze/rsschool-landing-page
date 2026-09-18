@@ -38,4 +38,10 @@ document.body.addEventListener("keydown", (event) => {
   }
 });
 
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 768) {
+    closeBurgerMenu();
+  }
+});
+
 export { renderBurgerMenu, openBurgerMenu, closeBurgerMenu, toggleBurgerMenu }
