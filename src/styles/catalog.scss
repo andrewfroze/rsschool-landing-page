@@ -71,6 +71,7 @@
 
     cursor: pointer;
 
+    &:hover,
     &.active {
       border-color: var(--theme-background-container);
       background: var(--theme-background-container);
