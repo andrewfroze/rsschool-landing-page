@@ -1,7 +1,11 @@
 import "../styles/catalog-modal.scss";
 import { getImage } from "./catalog-images";
 
+let price;
+let itemSelected;
+
 function createItemModal(item) {
+  itemSelected = item;
   const overlay = document.createElement("div");
   overlay.className = "catalog-modal-overlay";
 
@@ -38,9 +42,9 @@ function createItemModal(item) {
 
   title.append(name, text);
 
-  const size = createOptionGroup("Size", item.sizes, "size");
+  const size = createOptionGroup("Size", item.sizes, "size", true, true);
 
-  const additives = createOptionGroup("Additives", item.additives, "name");
+  const additives = createOptionGroup("Additives", item.additives, "name", false, false);
 
   const total = document.createElement("div");
   total.className = "catalog-modal__total";
@@ -48,8 +52,7 @@ function createItemModal(item) {
   const totalLabel = document.createElement("span");
   totalLabel.textContent = "Total:";
 
-  const price = document.createElement("span");
-  price.textContent = `\$${item.price}`;
+  price = document.createElement("span");
 
   total.append(totalLabel, price);
 
@@ -106,10 +109,18 @@ function createItemModal(item) {
 
   document.body.classList.add("modal-open");
 
+  requestAnimationFrame(() => updateTotal());
+
   return overlay;
 }
 
-function createOptionGroup(titleText, options, labelKey) {
+function createOptionGroup(
+  titleText,
+  options,
+  labelKey,
+  preselectFirst,
+  singleSelect,
+) {
   const group = document.createElement("div");
   group.className = "catalog-modal__option-group";
 
@@ -120,38 +131,56 @@ function createOptionGroup(titleText, options, labelKey) {
   const tabs = document.createElement("div");
   tabs.className = "catalog-modal__options";
 
-  Object.keys(options).forEach((option) => {
+  Object.keys(options).forEach((option, index) => {
     const button = document.createElement("button");
 
     button.className = "catalog-modal__option";
     button.type = "button";
-    button.dataset.value = option[labelKey];
 
-    if (option.active) {
+    const optionData = options[option];
+    button.dataset.value = optionData["add-price"];
+
+    if (index === 0 && preselectFirst) {
       button.classList.add("active");
+      button.setAttribute("aria-checked", "true");
+    } else {
+      button.setAttribute("aria-checked", "false");
     }
+
+    button.setAttribute("role", singleSelect ? "radio" : "checkbox");
 
     const icon = document.createElement("span");
     icon.className = "catalog-modal__option-icon";
 
     if (Array.isArray(options)) {
-      icon.textContent = +option + 1;
+      icon.textContent = Number(option) + 1;
     } else {
       icon.textContent = option.toUpperCase();
     }
 
-
     const label = document.createElement("span");
-    label.textContent = options[option][labelKey];
+    label.textContent = optionData[labelKey];
 
     button.append(icon, label);
 
     button.addEventListener("click", () => {
-      tabs.querySelectorAll(".catalog-modal__option").forEach((item) => {
-        item.classList.remove("active");
-      });
+      if (singleSelect) {
+        tabs.querySelectorAll(".catalog-modal__option").forEach((item) => {
+          item.classList.remove("active");
+          item.setAttribute("aria-checked", "false");
+        });
 
-      button.classList.add("active");
+        button.classList.add("active");
+        button.setAttribute("aria-checked", "true");
+      } else {
+        button.classList.toggle("active");
+
+        button.setAttribute(
+          "aria-checked",
+          button.classList.contains("active") ? "true" : "false",
+        );
+      }
+      updateTotal();
     });
 
     tabs.append(button);
@@ -160,6 +189,20 @@ function createOptionGroup(titleText, options, labelKey) {
   group.append(title, tabs);
 
   return group;
+}
+
+function updateTotal() {
+  price.textContent = `\$${getActivePrice().toFixed(2)}`;
+}
+
+function getActivePrice() {
+  let total = Number(itemSelected["price"]);
+
+  document.querySelectorAll(".catalog-modal__option.active").forEach((button) => {
+    total += Number(button.dataset.value);
+  });
+
+  return total;
 }
 
 export { createItemModal };
