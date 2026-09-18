@@ -1,0 +1,124 @@
+.burger-menu-open .burger-menu {
+  transform: translateX(-100vw);
+}
+
+.burger-menu-open .header__burger-icon {
+  &::before {
+    transform: translateY(4px) rotate(-45deg);
+  }
+
+  &::after {
+    transform: translateY(-4px) rotate(45deg);
+  }
+}
+
+.burger-menu {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--theme-background-page);
+  z-index: 2;
+  gap: 100px;
+  left: 100vw;
+  min-height: 100vh;
+  padding-block: 60px;
+  padding-inline: clamp(
+    16px,
+    calc(16px + (100vw - 380px) * 0.0738),
+    40px
+  );
+  transition: transform 0.3s ease-in;
+
+  &__navigation {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__navigation-list {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+  }
+
+  &__navigation-link {
+    position: relative;
+
+    color: var(--theme-text-primary);
+    text-decoration: none;
+
+    &::after {
+      content: "";
+
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -8px;
+
+      height: 1px;
+
+      background-color: currentColor;
+
+      transform: scaleX(0);
+      transition: transform 300ms ease;
+    }
+
+    @media (hover: hover) {
+      &:hover::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  &__menu-link {
+    position: relative;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    height: fit-content;
+
+    color: var(--theme-text-primary);
+    text-decoration: none;
+    cursor: pointer;
+
+  &::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -8px;
+
+    height: 1px;
+
+    background-color: currentColor;
+
+    transform: scaleX(0);
+    transition: transform 300ms ease;
+  }
+
+  @media (hover: hover) {
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+&__menu-link-icon {
+  display: flex;
+  align-items: center;
+}
+}
+
+.burger-menu-open {
+  overflow: hidden;
+}

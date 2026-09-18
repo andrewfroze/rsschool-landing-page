@@ -35,6 +35,34 @@ function renderFavoriteCoffeeSection() {
 
   slidesWrapper.append(slidesContainer);
 
+  let swipeStartX = null;
+  slidesWrapper.addEventListener("pointerdown", (event) => {
+    if (isAnimating) {
+      return;
+    }
+
+    swipeStartX = event.clientX;
+  });
+
+  document.body.addEventListener("pointerup", (event) => {
+    if (swipeStartX === null || isAnimating) {
+      return;
+    }
+
+    const swipeEndX = event.clientX;
+    const swipeDistance = swipeStartX - swipeEndX;
+
+    const threshold = slidesWrapper.clientWidth * 0.3;
+
+    if (Math.abs(swipeDistance) > threshold) {
+      const direction = Math.sign(swipeDistance);
+      isAnimating = true;
+      currentSlide += direction;
+      updateSlider();
+    }
+    swipeStartX = null;
+  });
+
   const nextButton = document.createElement("button");
   nextButton.className = "favorite-coffee__button favorite-coffee__button--next";
   nextButton.type = "button";

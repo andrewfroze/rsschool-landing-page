@@ -1,3 +1,6 @@
+import { getImage } from "./catalog-images";
+import { createItemModal } from "./catalog-modal";
+
 function createMenuCard(item) {
   const card = document.createElement("article");
   card.className = "menu__card";
@@ -7,7 +10,7 @@ function createMenuCard(item) {
 
   const image = document.createElement("img");
   image.className = "menu__card-image";
-  image.src = item.image;
+  image.src = getImage(item.name);
   image.alt = item.name;
 
   box.append(image);
@@ -35,6 +38,10 @@ function createMenuCard(item) {
   description.append(title, price);
 
   card.append(box, description);
+
+  card.addEventListener("click", () => {
+    document.body.append(createItemModal(item));
+  });
 
   return card;
 }
