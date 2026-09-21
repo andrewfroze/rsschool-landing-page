@@ -1,6 +1,6 @@
-import coffee1 from "../images/coffee-1.png";
-import coffee2 from "../images/coffee-2.png";
-import coffee3 from "../images/coffee-3.png";
+import coffee1 from "../images/coffee-1-1.webp";
+import coffee2 from "../images/coffee-2-1.webp";
+import coffee3 from "../images/coffee-3-1.webp";
 
 const favoriteCoffees = [
   {

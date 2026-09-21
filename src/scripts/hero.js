@@ -1,5 +1,5 @@
-import heroImage from "../images/hero-image.jpg";
-import heroVideoSrc from "../images/hero-video.mp4";
+import heroImage from "../images/hero-image.webp";
+import heroVideoSrc from "../images/hero-video.webm";
 import coffeeCup from "../images/coffee-cup.svg?raw";
 
 function renderHeroSection() {

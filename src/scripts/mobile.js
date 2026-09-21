@@ -1,4 +1,4 @@
-import mobileScreensImage from "../images/mobile-screens.png";
+import mobileScreensImage from "../images/mobile-screens.webp";
 import appStoreIcon from "../images/app-store.svg?raw";
 import googlePlayIcon from "../images/google-play.svg?raw";
 

@@ -1,7 +1,7 @@
 import { createMenuCard } from "./menu-card.js";
-import coffeeIcon from "../images/coffee.png";
-import teaIcon from "../images/tea.png";
-import dessertIcon from "../images/dessert.png";
+import coffeeIcon from "../images/coffee.webp";
+import teaIcon from "../images/tea.webp";
+import dessertIcon from "../images/dessert.webp";
 import more from "../images/more.svg?raw";
 import menuItems from "../resources/products.json";
 
