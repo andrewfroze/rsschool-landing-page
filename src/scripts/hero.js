@@ -23,7 +23,7 @@ function renderHeroSection() {
 
   const source = document.createElement("source");
   source.src = heroVideoSrc;
-  source.type = "video/mp4";
+  source.type = "video/webm";
 
   heroVideo.append(source);
   heroContainer.append(heroPoster, heroVideo);
