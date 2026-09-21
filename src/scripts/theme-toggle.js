@@ -4,7 +4,7 @@ import { isDark, setActiveTheme, applyActiveTheme, saveSettings } from "./themes
 import { updateLogoIcon } from "./header";
   
 function createThemeToggle() {
-  const themeToggle = document.createElement("label");
+  const themeToggle = document.createElement("div");
   themeToggle.className = "theme-toggle";
 
   const themeToggleInput = document.createElement("input");

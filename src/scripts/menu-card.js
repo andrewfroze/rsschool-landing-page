@@ -21,7 +21,7 @@ function createMenuCard(item) {
   const title = document.createElement("div");
   title.className = "menu__card-title";
 
-  const name = document.createElement("h3");
+  const name = document.createElement("h2");
   name.className = "menu__card-name";
   name.textContent = item.name;
 

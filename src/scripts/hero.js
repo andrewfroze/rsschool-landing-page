@@ -1,5 +1,3 @@
-import "../styles/hero.scss";
-
 import heroImage from "../images/hero-image.jpg";
 import heroVideoSrc from "../images/hero-video.mp4";
 import coffeeCup from "../images/coffee-cup.svg?raw";

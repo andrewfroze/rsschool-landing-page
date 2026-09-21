@@ -1,5 +1,3 @@
-import "../styles/header.scss";
-
 import logoLight from "../images/logo-light.svg";
 import logoDark from "../images/logo-dark.svg";
 
@@ -23,6 +21,7 @@ function renderHeaderMenu(linksPrefix = "", menuUrl = `${import.meta.env.BASE_UR
 
   logo = document.createElement("img");
   logo.className = "header__logo";
+  logo.alt = "logo";
   updateLogoIcon();
 
   logoLink.append(logo);

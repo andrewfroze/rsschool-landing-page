@@ -1,4 +1,3 @@
-import "../styles/catalog.scss";
 import { createMenuCard } from "./menu-card.js";
 import coffeeIcon from "../images/coffee.png";
 import teaIcon from "../images/tea.png";
@@ -51,6 +50,7 @@ function renderCatalog() {
     const img = document.createElement("img");
     img.className = "menu__tab-icon__img";
     img.src = icon;
+    img.alt = `Tab icon: ${text}`;
     iconWrapper.append(img);
 
     const label = document.createElement("span");

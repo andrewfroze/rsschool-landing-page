@@ -1,5 +1,3 @@
-import "../styles/mobile.scss";
-
 import mobileScreensImage from "../images/mobile-screens.png";
 import appStoreIcon from "../images/app-store.svg?raw";
 import googlePlayIcon from "../images/google-play.svg?raw";

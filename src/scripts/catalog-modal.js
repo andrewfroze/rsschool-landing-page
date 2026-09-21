@@ -1,4 +1,3 @@
-import "../styles/catalog-modal.scss";
 import { getImage } from "./catalog-images";
 
 let price;

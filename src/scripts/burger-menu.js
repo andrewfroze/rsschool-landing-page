@@ -1,4 +1,3 @@
-import "../styles/burger-menu.scss";
 import { createNavigationPanel, createMenuLink } from "./navigation";
 
 function renderBurgerMenu(linksPrefix, menuUrl) {

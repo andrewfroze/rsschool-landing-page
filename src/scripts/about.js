@@ -1,5 +1,3 @@
-import "../styles/about.scss";
-
 import about1 from "../images/about-1.jpg";
 import about2 from "../images/about-2.jpg";
 import about3 from "../images/about-3.jpg";
