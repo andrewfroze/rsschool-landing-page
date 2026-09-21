@@ -200,6 +200,7 @@
   &__slider {
     position: absolute;
     inset: 0;
+    cursor: pointer;
 
     border-radius: 22px;
 
@@ -230,6 +231,7 @@
   &__icons {
     position: absolute;
     z-index: 2;
+    pointer-events: none;
 
     display: flex;
     justify-content: center;

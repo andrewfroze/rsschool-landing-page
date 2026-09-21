@@ -9,11 +9,13 @@ function createThemeToggle() {
 
   const themeToggleInput = document.createElement("input");
   themeToggleInput.className = "theme-toggle__input";
+  themeToggleInput.id = "theme-toggle";
   themeToggleInput.type = "checkbox";
   themeToggleInput.checked = isDark();
 
-  const themeSlider = document.createElement("span");
+  const themeSlider = document.createElement("label");
   themeSlider.className = "theme-toggle__slider";
+  themeSlider.htmlFor = "theme-toggle";
 
   const toggleIcons = document.createElement("div");
   toggleIcons.className = "theme-toggle__icons";
