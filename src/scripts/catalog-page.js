@@ -1,5 +1,3 @@
-import "../styles/main.scss";
-import "../styles/catalog.scss";
 import { loadActiveTheme } from "./themes";
 import { renderHeaderMenu } from "./header";
 import { renderContacts } from "./contacts";

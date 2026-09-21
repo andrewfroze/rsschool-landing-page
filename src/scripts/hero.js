@@ -1,7 +1,5 @@
-import "../styles/hero.scss";
-
-import heroImage from "../images/hero-image.jpg";
-import heroVideoSrc from "../images/hero-video.mp4";
+import heroImage from "../images/hero-image.webp";
+import heroVideoSrc from "../images/hero-video.webm";
 import coffeeCup from "../images/coffee-cup.svg?raw";
 
 function renderHeroSection() {
@@ -25,7 +23,7 @@ function renderHeroSection() {
 
   const source = document.createElement("source");
   source.src = heroVideoSrc;
-  source.type = "video/mp4";
+  source.type = "video/webm";
 
   heroVideo.append(source);
   heroContainer.append(heroPoster, heroVideo);

@@ -1,5 +1,3 @@
-import "../styles/main.scss";
-
 import { loadActiveTheme } from "./themes";
 import { renderHomeMain } from "./home";
 import { renderHeaderMenu } from "./header";

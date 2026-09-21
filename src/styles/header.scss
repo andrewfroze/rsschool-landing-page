@@ -1,11 +1,15 @@
 .header {
-  position: sticky;
+  position: fixed;
+  height: 80px;
+  width: 100%;
   top: 0;
   z-index: 1000;
   display: flex;
   flex-direction: column;
   gap: 20px;
   margin-bottom: 20px;
+  padding-top: 20px;
+  background-color: var(--theme-background-page);
 
   &__container {
     display: flex;
@@ -45,11 +49,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
-  }
-
-  &__navigation-item {
-    display: flex;
+    gap: clamp(
+      16px,
+      calc(16px + (100vw - 768px) * 0.0288),
+      40px
+    );
   }
 
   &__navigation-link {
@@ -101,27 +105,31 @@
     cursor: pointer;
 
     &-icon {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      width: 16px;
-      height: 12px;
+      position: relative;
 
-      
-      &::before {
+      width: 16px;
+      height: 16px;
+
+      &::before,
+      &::after {
         content: "";
+        position: absolute;
+
+        left: 0;
         width: 16px;
         height: 1.5px;
+
         background-color: var(--theme-text-primary);
+
+        transition: transform 0.5s ease;
+      }
+
+      &::before {
+        top: 3px;
       }
 
       &::after {
-        content: "";
-        width: 16px;
-        height: 1.5px;
-        background-color: var(--theme-text-primary);
+        top: 11px;
       }
     }
   }
@@ -192,6 +200,7 @@
   &__slider {
     position: absolute;
     inset: 0;
+    cursor: pointer;
 
     border-radius: 22px;
 
@@ -222,6 +231,7 @@
   &__icons {
     position: absolute;
     z-index: 2;
+    pointer-events: none;
 
     display: flex;
     justify-content: center;
@@ -266,7 +276,7 @@
   }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 768px) {
   .header {
     &__navigation {
       display: none;

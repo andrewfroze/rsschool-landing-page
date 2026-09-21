@@ -1,10 +1,9 @@
-import "../styles/catalog.scss";
 import { createMenuCard } from "./menu-card.js";
-import coffeeIcon from "../images/coffee.png";
-import teaIcon from "../images/tea.png";
-import dessertIcon from "../images/dessert.png";
-import { menu as catalogMenu } from "./catalog-items.js";
+import coffeeIcon from "../images/coffee.webp";
+import teaIcon from "../images/tea.webp";
+import dessertIcon from "../images/dessert.webp";
 import more from "../images/more.svg?raw";
+import menuItems from "../resources/products.json";
 
 const collapsedRows = 2;
 let activeTab;
@@ -51,6 +50,7 @@ function renderCatalog() {
     const img = document.createElement("img");
     img.className = "menu__tab-icon__img";
     img.src = icon;
+    img.alt = `Tab icon: ${text}`;
     iconWrapper.append(img);
 
     const label = document.createElement("span");
@@ -134,7 +134,8 @@ function renderCards(category) {
 
   const visibleCardsCount = collapsedRows * columns;
 
-  let cardsToRender = catalogMenu[category];
+  let categoryItems = menuItems.filter((item) => item.category === category);
+  let cardsToRender = categoryItems;
 
   if (collapsed) {
     cardsToRender = cardsToRender.slice(0, visibleCardsCount);
@@ -147,7 +148,7 @@ function renderCards(category) {
   showMoreButton?.remove();
   showMoreButton = null;
 
-  if (collapsed && catalogMenu[category].length > cardsToRender.length) {
+  if (collapsed && categoryItems.length > cardsToRender.length) {
     renderMoreButton();
   }
 }

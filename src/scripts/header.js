@@ -1,36 +1,12 @@
-import "../styles/header.scss";
-
 import logoLight from "../images/logo-light.svg";
 import logoDark from "../images/logo-dark.svg";
 
-import coffeeCup from "../images/coffee-cup.svg?raw";
 import { isDark } from "./themes";
 import { createThemeToggle } from "./theme-toggle";
+import { closeBurgerMenu, renderBurgerMenu, toggleBurgerMenu } from "./burger-menu";
+import { createNavigationPanel, createMenuLink } from "./navigation";
 
 let logo;
-
-const navigationItems = [
-  {
-    title: "Favorite coffee",
-    link: "#favorite",
-    isCurrentPage: false,
-  },
-  {
-    title: "About",
-    link: "#about",
-    isCurrentPage: false,
-  },
-  {
-    title: "Mobile app",
-    link: "#mobile",
-    isCurrentPage: false,
-  },
-  {
-    title: "Contact us",
-    link: "#contacts",
-    isCurrentPage: true,
-  },
-];
 
 function renderHeaderMenu(linksPrefix = "", menuUrl = `${import.meta.env.BASE_URL}menu/`) {
   const headerContainer = document.createElement("div");
@@ -45,20 +21,16 @@ function renderHeaderMenu(linksPrefix = "", menuUrl = `${import.meta.env.BASE_UR
 
   logo = document.createElement("img");
   logo.className = "header__logo";
+  logo.alt = "logo";
   updateLogoIcon();
 
   logoLink.append(logo);
 
-  const menuLink = document.createElement("a");
-  menuLink.className = "header__menu-link";
-  menuLink.href = menuUrl;
-  menuLink.textContent = "Menu";
+  logoLink.addEventListener("click", () => {
+    closeBurgerMenu();
+  });
 
-  const menuCoffeeCupIcon = document.createElement("span");
-  menuCoffeeCupIcon.className = "header__menu-link-icon";
-  menuCoffeeCupIcon.innerHTML = coffeeCup;
-
-  menuLink.append(menuCoffeeCupIcon);
+  const menuLink = createMenuLink(menuUrl);
 
   const menuControls = document.createElement("aside");
   menuControls.className = "header__controls";
@@ -73,17 +45,25 @@ function renderHeaderMenu(linksPrefix = "", menuUrl = `${import.meta.env.BASE_UR
 
   burgerButton.append(burgerIcon);
 
+  burgerButton.addEventListener("click", () => {
+    toggleBurgerMenu();
+  });
+
   menuControls.append(
     createThemeToggle(),
     menuLink,
     burgerButton,
   );
 
+  const navigationPanel = createNavigationPanel(linksPrefix);
+
   headerMenu.append(
     logoLink,
-    createNavigationPanel(linksPrefix),
+    navigationPanel,
     menuControls,
   );
+
+  document.body.append(renderBurgerMenu(linksPrefix, menuUrl));
   return headerContainer;
 }
 
@@ -91,29 +71,6 @@ function updateLogoIcon() {
   logo.src = isDark() ? logoDark : logoLight;
 }
 
-function createNavigationPanel(linksPrefix = "") {
-  const navigationPanel = document.createElement("nav");
-  navigationPanel.className = "header__navigation";
 
-  const navigationList = document.createElement("ul");
-  navigationList.className = "header__navigation-list";
-
-  navigationPanel.append(navigationList);
-
-  for (const item of navigationItems) {
-    const navigationItem = document.createElement("li");
-    navigationItem.className = "header__navigation-item";
-
-    const navigationItemLink = document.createElement("a");
-    navigationItemLink.className = "header__navigation-link";
-    navigationItemLink.textContent = item.title;
-    navigationItemLink.href = (item.isCurrentPage ? "" : linksPrefix) + item.link;
-
-    navigationItem.append(navigationItemLink);
-    navigationList.append(navigationItem);
-  }
-
-  return navigationPanel;
-}
 
 export { renderHeaderMenu, updateLogoIcon }

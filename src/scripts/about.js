@@ -1,9 +1,7 @@
-import "../styles/about.scss";
-
-import about1 from "../images/about-1.jpg";
-import about2 from "../images/about-2.jpg";
-import about3 from "../images/about-3.jpg";
-import about4 from "../images/about-4.jpg";
+import about1 from "../images/about-1.webp";
+import about2 from "../images/about-2.webp";
+import about3 from "../images/about-3.webp";
+import about4 from "../images/about-4.webp";
 
 function renderAboutSection() {
   const about = document.createElement("section");
